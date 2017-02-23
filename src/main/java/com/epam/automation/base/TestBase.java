@@ -1,11 +1,9 @@
-package base;
+package com.epam.automation.base;
 
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,15 +13,18 @@ import java.util.concurrent.TimeUnit;
 public class TestBase {
 
     protected static WebDriver driver;
+    private static final String URL = "https://github.com/";
 
     public void setup(){
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.get(URL);
+
     }
 
-    @AfterMethod
-    public void close(){
-        driver.quit();
-    }
+//    @AfterMethod
+//    public void close(){
+//        driver.quit();
+//    }
 }
