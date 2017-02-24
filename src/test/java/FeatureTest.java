@@ -21,18 +21,13 @@ public class FeatureTest extends TestBase{
     public void setup(){
         super.setup();
         homePage = PageFactory.initElements(driver, HomePage.class);
-        loginPage = PageFactory.initElements(driver, LoginPage.class);
-        userMainPage = PageFactory.initElements(driver, UserMainPage.class);
-        settingsPage = PageFactory.initElements(driver, SettingsPage.class);
-        newRepositoryPage = PageFactory.initElements(driver, NewRepositoryPage.class);
-
     }
 
     @Test
     public void changePublicProfileSettings(){
-        homePage.pushSingInButton();
-        loginPage.login();
-        userMainPage.goToSettingsPage();
+        loginPage = homePage.pushSingInButton();
+        userMainPage = loginPage.login();
+        settingsPage = userMainPage.goToSettingsPage();
         settingsPage.changeData();
 
         Assert.assertEquals(successfulUpdating, settingsPage.updateCheck(), "Data doesn't update.");
@@ -40,9 +35,9 @@ public class FeatureTest extends TestBase{
 
     @Test
     public void createNewRepository() {
-        homePage.pushSingInButton();
-        loginPage.login();
-        userMainPage.clickNewRepositoryButton();
+        loginPage = homePage.pushSingInButton();
+        userMainPage = loginPage.login();
+        newRepositoryPage = userMainPage.clickNewRepositoryButton();
         newRepositoryPage.putRepositoryName();
         newRepositoryPage.pushCreateRepositoryButton();
 

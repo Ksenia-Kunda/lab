@@ -5,6 +5,7 @@ import com.epam.automation.helper.DataConfig;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 
@@ -32,7 +33,7 @@ public class SettingsPage extends PageBase{
 
     public SettingsPage(WebDriver driver) {
         super(driver);
-        loginPage = new LoginPage(driver);
+        PageFactory.initElements(driver, this);
     }
 
     public void changeData() {
